@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: hello-world-pod
-        image: us.gcr.io/learned-vault-251805/kubernetes:latest
+        image: us.gcr.io
         ports: 
         - containerPort: 80
         - containerPort: 443
