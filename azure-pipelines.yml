@@ -32,3 +32,4 @@ steps:
     buildType: 'current'
     downloadType: 'single'
     downloadPath: '$(System.ArtifactsDirectory)'
+    
