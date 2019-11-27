@@ -21,7 +21,7 @@ stages:
 - stage: release
   displayName: 'RELESE env'
   jobs:
-  - job: ENVIRONMENT
+  - job: environ
     pool:
       vmImage: 'ubuntu-latest'
   environment: 'dev-env1'
