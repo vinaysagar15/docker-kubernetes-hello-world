@@ -25,9 +25,13 @@ stages:
 - stage: BASICS1
   displayName: 'BASICS1'
   jobs:
-  - job: scriptsh
-    displayName: ssH
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-     - script: uname -a
+  - task: Maven@3
+    inputs:
+      mavenPomFile: 'pom.xml'
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: 'JDKVersion'
+      mavenVersionOption: 'Default'
+      mavenAuthenticateFeed: false
+      effectivePomSkip: false
+      sonarQubeRunAnalysis: false
