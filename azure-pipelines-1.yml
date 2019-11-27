@@ -13,5 +13,24 @@ steps:
 - script: echo Hello, world!
  
 stages:
+
+- stage: basics
+  displayName: 'BASICS'
+  jobs:
+  - job: trigger
+    trigger:
+    - master
+
+- stage: pool
+  displayName: 'VM IMAGE'
+  jobs:
+  - job: VM
+    pool:
+      vmImage: 'ubuntu-latest'
+
+
 - stage: release
+  displayName: RELESE ENVIRONMENT'
+  jobs:
+  - job: ENVIRONMENT
   environment: dev-env1
