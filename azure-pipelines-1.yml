@@ -14,4 +14,4 @@ steps:
  
 stages:
 - stage: release
-  environment: environment: dev-env1
+  environment: dev-env1
