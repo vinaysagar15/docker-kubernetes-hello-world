@@ -17,11 +17,3 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
      - script: pwd
-
-- stage: release
-  displayName: 'RELESE env'
-  jobs:
-  - job: environ
-    pool:
-      vmImage: 'ubuntu-latest'
-  environment: 'dev-env1'
