@@ -40,3 +40,14 @@ stages:
           mavenAuthenticateFeed: false
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
+
+- stage: Release
+  displayName: 'ReleaseENV'
+  jobs:
+  - deployment: environment
+  - job: job4
+    displayName: Releaseenv
+    pool:
+      vmImage: 'ubuntu-latest'
+      environment: dev-env1
+    
