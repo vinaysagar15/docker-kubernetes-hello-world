@@ -32,4 +32,8 @@ steps:
     buildType: 'current'
     downloadType: 'single'
     downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: ManualIntervention@8
+  inputs:
+    emailRecipients: 'suraj.r@powerupcloud.com'
     
