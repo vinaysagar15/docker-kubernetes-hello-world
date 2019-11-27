@@ -17,3 +17,13 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
      - script: pwd
+
+- stage: BASICS1
+  displayName: 'BASICS1'
+  jobs:
+  - job: scriptsh
+    displayName: ssH
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+     - script: uname -a
