@@ -11,19 +11,22 @@ stages:
 - stage: BASICS
   displayName: 'BASICS'
   jobs:
-  - job: scriptsh
-    displayName: SHH
+  - job: job1
+    displayName: COMMANDS
     pool:
       vmImage: 'ubuntu-latest'
     steps:
      - script: pwd
-  - job: scriptsh22
+  - job: job2
     displayName: 22
     steps: 
      - bash: uname -a
-     
-
-
+    
+  - job: 
+    displayName: deployment
+    steps:
+     - 
+   
 - stage: BASICS1
   displayName: 'BASICS1'
   jobs:
