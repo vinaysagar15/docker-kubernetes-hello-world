@@ -6,19 +6,22 @@
 trigger:
 - master
 
-steps:
-- script: echo Hello, world!
+stages:
 
-- stage: pool
-  displayName: 'VM IMAGE'
+- stage: BASICS
+  displayName: 'BASICS'
   jobs:
-  - job: VM
+  - job: scriptsh
+    displayName: SHH
     pool:
       vmImage: 'ubuntu-latest'
-
+    steps:
+     - script: pwd
 
 - stage: release
-  displayName: RELESE ENVIRONMENT'
+  displayName: 'RELESE environment'
   jobs:
   - job: ENVIRONMENT
+    pool:
+      vmImage: 'ubuntu-latest'
   environment: dev-env1
