@@ -13,11 +13,6 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-
-- task: ManualIntervention@8
-  inputs:
-    emailRecipients: 'suraj.r@powerupcloud.com'
-
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
@@ -38,4 +33,8 @@ steps:
     downloadType: 'single'
     downloadPath: '$(System.ArtifactsDirectory)'
 
-    
+stages: 
+- stage: Release to AKS
+  jobs: 
+  - deployment: AKS
+    environment: dev-env1
