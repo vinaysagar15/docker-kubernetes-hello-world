@@ -19,7 +19,7 @@ stages:
      - script: pwd
 
 - stage: release
-  displayName: 'RELESE environment'
+  displayName: 'RELESE env'
   jobs:
   - job: ENVIRONMENT
     pool:
