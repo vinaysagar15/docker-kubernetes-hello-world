@@ -21,11 +21,7 @@ stages:
     displayName: 22
     steps: 
      - bash: uname -a
-   
-- stage: BASICS1
-  displayName: 'BASICS1'
-  jobs:
-  - task: Maven@3
+     - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
       publishJUnitResults: true
