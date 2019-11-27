@@ -3,13 +3,11 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
  
-stages:
-- stage: basics
-  displayName: 'BASICS'
-  jobs:
-  - job: trigger
-    trigger:
-    - master
+trigger:
+- master
+
+steps:
+- script: echo Hello, world!
 
 - stage: pool
   displayName: 'VM IMAGE'
