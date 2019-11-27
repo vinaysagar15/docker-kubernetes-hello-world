@@ -21,11 +21,6 @@ stages:
     displayName: 22
     steps: 
      - bash: uname -a
-    
-  - job: 
-    displayName: deployment
-    steps:
-     - 
    
 - stage: BASICS1
   displayName: 'BASICS1'
