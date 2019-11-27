@@ -17,6 +17,12 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
      - script: pwd
+  - job: scriptsh22
+    displayName: 22
+    steps: 
+     - bash: uname -a
+     
+
 
 - stage: BASICS1
   displayName: 'BASICS1'
