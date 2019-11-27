@@ -24,4 +24,4 @@ stages:
   - job: ENVIRONMENT
     pool:
       vmImage: 'ubuntu-latest'
-  environment: dev-env1
+  environment: 'dev-env1'
