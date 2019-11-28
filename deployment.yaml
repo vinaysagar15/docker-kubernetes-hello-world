@@ -1,31 +1,22 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: hello-world
+  name: nginx-deployment
+  labels:
+    app: nginx
 spec:
-  replicas: 1 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
-        app: hello-world
+        app: nginx
     spec:
       containers:
-      - name: hello-world-pod
-        image: s6suraj/december:tagname
-        ports: 
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
         - containerPort: 80
-        - containerPort: 443
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hello-world-service
-spec:
-  selector:
-    app: hello-world
-  ports:
-  - name: http
-    protocol: TCP
-    port: 80
-    targetPort: 8080
-  type: LoadBalancer
+
