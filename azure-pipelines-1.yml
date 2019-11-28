@@ -44,7 +44,7 @@ stages:
 - stage: Release
   displayName: 'ReleaseENV'
   jobs:
-  - deployment:
+  - deployment: dev-env1
   - job: job4
     displayName: Releaseenv
     pool:
