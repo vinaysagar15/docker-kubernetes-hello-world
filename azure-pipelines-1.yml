@@ -45,9 +45,10 @@ stages:
   displayName: 'ReleaseENV'
   jobs:
   - deployment: devenv1
+    environment: dev-env1
   - job: job4
     displayName: Releaseenv
     pool:
       vmImage: 'ubuntu-latest'
-      environment: dev-env1
+      
     
