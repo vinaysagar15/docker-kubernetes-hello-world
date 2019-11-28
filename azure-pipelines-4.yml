@@ -51,4 +51,10 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-     - script: kubectl get pods
+
+      - task: KubernetesManifest@0
+        inputs:
+          action: 'deploy'
+          kubernetesServiceConnection: 'dev-stage-env-surajakstest-default-1574936466909'
+          namespace: 'dev'
+          manifests: 'deployment.yaml'
