@@ -2,39 +2,53 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
+ 
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- stage: BASICS
+  displayName: 'BASICS'
+  jobs:
+  - job: job1
+    displayName: COMMANDS
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+     - script: pwd
+  - job: job2
+    displayName: 22
+    steps: 
+     - bash: uname -a
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
-- task: DownloadBuildArtifacts@0
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    downloadPath: '$(System.ArtifactsDirectory)'
+- stage: Maven
+  displayName: 'Maven'
+  jobs:
+  - job: job3
+    displayName: MavenBuild
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: Maven@3
+        inputs:
+          mavenPomFile: 'pom.xml'
+          publishJUnitResults: true
+          testResultsFiles: '**/surefire-reports/TEST-*.xml'
+          javaHomeOption: 'JDKVersion'
+          mavenVersionOption: 'Default'
+          mavenAuthenticateFeed: false
+          effectivePomSkip: false
+          sonarQubeRunAnalysis: false
 
-stages: 
-- stage: Release to AKS
-  jobs: 
-  - deployment: AKS
-    environment: dev-env1
+- stage: Release
+  displayName: 'ReleaseENV'
+  jobs:
+  - deployment: devenv1
+    environment: dev-stage-env
+  - job: job4
+    displayName: Releaseenv
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+     - script: kubectl get pods
