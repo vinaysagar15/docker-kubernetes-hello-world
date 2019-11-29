@@ -52,9 +52,13 @@ stages:
       vmImage: 'ubuntu-latest'
     steps:
 
-      - task: KubernetesManifest@0
+      - task: Kubernetes@1
         inputs:
-          action: 'deploy'
-          kubernetesServiceConnection: 'dev-stage-env-surajakstest-default-1574936466909'
+          connectionType: 'Kubernetes Service Connection'
+          kubernetesServiceEndpoint: 'dev-stage-env-surajakstest-default-1574936466909'
           namespace: 'dev'
-          manifests: 'deployment.yaml'
+          command: 'create'
+          useConfigurationFile: true
+          configuration: '/home/vsts/work/1/s/deployment.yaml'
+          secretType: 'dockerRegistry'
+          containerRegistryType: 'Azure Container Registry'
