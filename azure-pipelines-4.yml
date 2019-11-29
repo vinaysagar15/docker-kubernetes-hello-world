@@ -57,7 +57,7 @@ stages:
           connectionType: 'Kubernetes Service Connection'
           kubernetesServiceEndpoint: 'dev-stage-env-surajakstest-default-1574936466909'
           namespace: 'dev'
-          command: 'create'
+          command: 'apply'
           useConfigurationFile: true
           configuration: '/home/vsts/work/1/s/deployment.yaml'
           secretType: 'dockerRegistry'
