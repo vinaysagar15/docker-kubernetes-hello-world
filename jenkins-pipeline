@@ -1,4 +1,4 @@
-node(label:'slave1') {
+node(label:'slave-01') {
     stage('clone')
     {
         git 'https://github.com/vinaysagar15/docker-kubernetes-hello-world.git'
