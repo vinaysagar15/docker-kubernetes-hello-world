@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-ubuntu:16.04
+FROM openjdk:8-jdk-alpine
 MAINTAINER vinaysagar
 ENV PORT 8080
 EXPOSE 8080
