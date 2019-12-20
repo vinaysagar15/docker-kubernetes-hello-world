@@ -1,7 +1,7 @@
 node(label:'slave1') {
     stage('clone')
     {
-        git 'https://github.com/vinaysagar15/simple-java-maven-app.git'
+        git 'https://github.com/vinaysagar15/docker-kubernetes-hello-world.git'
     }
     stage('maven')
     {
