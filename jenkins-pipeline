@@ -1,17 +1,39 @@
-node(label:'slave-01') {
+
+node(label:'slave1') {
     stage('clone')
     {
         git 'https://github.com/vinaysagar15/docker-kubernetes-hello-world.git'
     }
-    stage('maven')
+stage('build')
     {
         def mvnHome= tool name: 'maven', type: 'maven'
-        sh "${mvnHome}/bin/mvn clean package " 
+        sh "${mvnHome}/bin/mvn clean package" 
     }
-
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
- 
-   }
+stage('Building image') 
+      {
+      sh "docker build -t hello-world:hello ."
+      }
+stage('Docker Login')
+      {
+       sh "docker login -u vinaysagar15 -p Sagar=1997"
+      }
+stage('Docker Image Push')
+      {
+       sh "docker tag hello-world:hello vinaysagar15/helloworld:15 && docker push vinaysagar15/helloworld:15"
+      }
+      }
+node(label:'slave1')
+{
+stage('Docker Image Pull')
+      {
+       sh "docker pull vinaysagar15/helloworld:15"
+      }
+stage('Run Image') 
+       {
+         sh "docker run --name puc -p 8080:8080 vinaysagar15/helloworld:15"
+       }
+}
