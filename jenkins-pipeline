@@ -34,6 +34,10 @@ stage('Docker Image Pull')
       }
 stage('Run Image') 
        {
-         sh "docker run -d --name abd -p 8080:8080 vinaysagar15/helloworld:15"
+         sh "docker run -d --name disc -p 8080:8080 vinaysagar15/helloworld:15"
        }
+stage('Email Notification')
+     {
+      emailext body: 'build fail', recipientProviders: [developers()], subject: 'error', to: 'ksvinay043@gmail.com'
+     }
 }
