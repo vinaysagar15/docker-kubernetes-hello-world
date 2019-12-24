@@ -34,7 +34,7 @@ stage('Docker Image Pull')
       }
 stage('Run Image') 
        {
-         sh "docker run -d --name jenk -p 8080:8080 vinaysagar15/helloworld:15"
+         sh "docker run -d --name car -p 8080:8080 vinaysagar15/helloworld:15"
        }
 stage('Email Notification')
        {
