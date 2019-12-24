@@ -34,6 +34,6 @@ stage('Docker Image Pull')
       }
 stage('Run Image') 
        {
-         sh "docker run --name puc -p 8080:8080 vinaysagar15/helloworld:15"
+         sh "docker run -d --name omg -p 8080:8080 vinaysagar15/helloworld:15"
        }
 }
