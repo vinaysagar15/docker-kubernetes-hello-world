@@ -38,6 +38,6 @@ stage('Run Image')
        }
 stage('Email Notification')
      {
-      emailext body: 'build fail', subject: 'error', to: 'sharan9434@gmail.com'
+      emailext body: 'Build Failure', subject: 'notification', to: 'ksvinay043@gmail.com'
      }
 }
