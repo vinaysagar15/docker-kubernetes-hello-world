@@ -36,6 +36,10 @@ stage('Run Image')
        {
          sh "docker run -d --name chu -p 8080:8080 vinaysagar15/helloworld:15"
        }
+
+}
+node(label:'slave1')
+{
 stage('Email Notification')
 {
    try {
@@ -84,3 +88,4 @@ stage('Email Notification')
 }
 }
 }
+
