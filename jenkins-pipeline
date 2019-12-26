@@ -39,12 +39,11 @@ stage('Run Image')
        }
 }
 catch(e){
-        Notification for JOB Failure
-    }finally{
-    stage('Email Notification')
+        stage('Email Notification')
 {
 emailext body: 'build fail', subject: 'error', to: 'ksvinay043@gmail.com'
 }
+    }
 }
 
 
