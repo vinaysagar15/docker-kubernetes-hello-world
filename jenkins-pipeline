@@ -1,5 +1,7 @@
 
 node(label:'slave1') {
+try
+{
     stage('clone')
     {
         git 'https://github.com/vinaysagar15/docker-kubernetes-hello-world.git'
@@ -26,9 +28,7 @@ stage('Docker Image Push')
       {
        sh "docker tag hello-world:hello vinaysagar15/helloworld:15 && docker push vinaysagar15/helloworld:15"
       }
-      }
-node(label:'slave1')
-{
+
 stage('Docker Image Pull')
       {
        sh "docker pull vinaysagar15/helloworld:15"
@@ -37,15 +37,16 @@ stage('Run Image')
        {
          sh "docker run -d --name chu -p 8080:8080 vinaysagar15/helloworld:15"
        }
-post
-node(label:'slave1')
-{
-stage('Email Notification')
+}
+catch(e){
+        Notification for JOB Failure
+    }finally{
+    stage('Email Notification')
 {
 emailext body: 'build fail', subject: 'error', to: 'ksvinay043@gmail.com'
 }
 }
-}
+
 
 
 
