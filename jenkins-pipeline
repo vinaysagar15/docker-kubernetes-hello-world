@@ -37,10 +37,12 @@ stage('Run Image')
        {
          sh "docker run -d --name chu -p 8080:8080 vinaysagar15/helloworld:15"
        }
-post{
+post
+node(label:'slave1')
+{
 stage('Email Notification')
 {
-emailext body: 'build fail', subject: 'error', to: 'sharan9434@gmail.com'
+emailext body: 'build fail', subject: 'error', to: 'ksvinay043@gmail.com'
 }
 }
 }
