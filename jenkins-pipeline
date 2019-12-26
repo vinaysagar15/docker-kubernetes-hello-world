@@ -75,7 +75,7 @@ stage('Email Notification')
      colorCode = '#FF0000'
    }
  
-   // Send notifications
+   // Send notifi
    slackSend (color: colorCode, message: summary)
  
    hipchatSend (color: color, notify: true, message: summary)
