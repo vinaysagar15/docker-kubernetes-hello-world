@@ -20,6 +20,7 @@ stage('Building image')
       {
             sh "docker build -t hello-world:hello ."
       }
+input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Docker Login')
       {
             sh "docker login -u vinaysagar15 -p Sagar=1997"
@@ -33,6 +34,7 @@ stage('Docker Image Pull')
       {
             sh "docker pull vinaysagar15/helloworld:15"
       }
+      input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Run Image') 
        {
             sh "docker run -d --name anil -p 8080:8080 vinaysagar15/helloworld:15"
