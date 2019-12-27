@@ -41,14 +41,14 @@ stage('Run Image')
        }
 stage('Email Notification')
        {
-            emailext body: 'BUILD SUCCESSFULL', subject: 'BUILD STATUS', to: 'anil517929@gmail.com'
+            emailext body: 'BUILD SUCCESSFULL', subject: 'BUILD STATUS', to: 'ksvinay043@gmail.com'
        }
 }
 catch(e)
 {
     stage('Email Notification')
     {
-        emailext body: 'BUILD FAIL', subject: 'BUILD STATUS', to: 'anil517929@gmail.com'
+        emailext body: 'BUILD FAIL', subject: 'BUILD STATUS', to: 'ksvinay043@gmail.com'
     }
  }
 }
