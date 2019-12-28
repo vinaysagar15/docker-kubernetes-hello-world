@@ -37,7 +37,7 @@ stage('Docker Image Pull')
       input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Run Image') 
        {
-            sh "docker run -d --name bike -p 8080:8080 vinaysagar15/helloworld:15"
+            sh "docker run -d --name min -p 8080:8080 vinaysagar15/helloworld:15"
        }
 stage('Email Notification')
        {
