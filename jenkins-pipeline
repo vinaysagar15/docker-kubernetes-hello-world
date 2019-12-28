@@ -39,10 +39,7 @@ stage('Run Image')
        {
             sh "docker run -d --name min -p 8080:8080 vinaysagar15/helloworld:15"
        }
-stage('Email Notification')
-       {
-            emailext body: 'BUILD SUCCESSFULL', subject: 'BUILD STATUS', to: 'ksvinay043@gmail.com'
-       }
+
 }
 catch(e)
 {
