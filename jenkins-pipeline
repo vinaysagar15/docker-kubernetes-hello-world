@@ -10,7 +10,7 @@ try
 stage('build')
     {
         def mvnHome= tool name: 'maven', type: 'maven'
-        sh "${mvnHome}/bin/mvn clean test" 
+        sh "${mvnHome}/bin/mvn clean package" 
     }
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
