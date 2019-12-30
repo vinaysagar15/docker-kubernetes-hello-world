@@ -54,7 +54,7 @@ catch(e)
     {
         echo 'BUILD FAILURE'
             
-            emailext body: 'BUILD FAILURE Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}', subject: 'Jenkins Build Job ${env.JOB_NAME}', to: 'ksvinay043@gmail.com'
+            emailext body: 'BUILD FAILURE Job '${env.JOB_NAME}' build '${env.BUILD_NUMBER}'  More info at: '${env.BUILD_URL}'', subject: 'Jenkins Build Job '${env.JOB_NAME}'', to: 'ksvinay043@gmail.com'
     }
  }
 }
