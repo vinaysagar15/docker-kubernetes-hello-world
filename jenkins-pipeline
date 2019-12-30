@@ -49,7 +49,7 @@ stage('Run Image')
    ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p> 
      <p><i>(Build log is attached.)</i></p>""", 
     compressLog: true, 
-     [$class: 'RequesterRecipientProvider']], 
+     [$class: 'RequesterRecipientProvider'], 
     subject: "Status: ${currentBuild.result?:'SUCCESS'} - 
     Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
     to: 'ksvinay043@gmail.com'
@@ -67,7 +67,7 @@ catch(e)
    ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p> 
      <p><i>(Build log is attached.)</i></p>""", 
     compressLog: true, 
-     [$class: 'RequesterRecipientProvider']], 
+     [$class: 'RequesterRecipientProvider'], 
     subject: "Status: ${currentBuild.result?:'SUCCESS'} - 
     Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
     to: 'ksvinay043@gmail.com'
