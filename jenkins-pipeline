@@ -44,6 +44,10 @@ stage('Run Image')
        stage('Email Notification')
        {  
             echo 'BUILD SUCCESS'
+            def currentResult = ${currentBuild.currentResult}
+            def JOB_NAME = ${env.JOB_NAME}
+            def BUILD_NUMBER = ${env.BUILD_NUMBER}
+            def BUILD_URL = ${env.BUILD_URL}
             emailext body: '${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'ksvinay043@gmail.com'
        }
 }
@@ -52,7 +56,11 @@ catch(e)
     stage('Email Notification')
     {
         echo 'BUILD FAILURE'
-        emailext body: '${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'ksvinay043@gmail.com'
+            def currentResult = ${currentBuild.currentResult}
+            def JOB_NAME = ${env.JOB_NAME}
+            def BUILD_NUMBER = ${env.BUILD_NUMBER}
+            def BUILD_URL = ${env.BUILD_URL}
+            emailext body: '${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}', subject: 'Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}', to: 'ksvinay043@gmail.com'
     }
  }
 }
