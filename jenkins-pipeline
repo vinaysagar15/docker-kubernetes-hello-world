@@ -1,7 +1,6 @@
 
 node(label:'slave1') {
 try
-notifyStarted()
 {
     stage('clone')
     {
