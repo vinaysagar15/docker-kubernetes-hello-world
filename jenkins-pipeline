@@ -21,7 +21,7 @@ stage('Building image')
             sh "docker build -t hello-world:hello ."
       }
 emailext body: '"Job '${JOB_NAME}' (${BUILD_NUMBER}) is waiting for input Please go to ${BUILD_URL} and verify the build ,   ', subject: 'Building image approval', to: 'ksvinay043@gmail.com'
-
+input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Docker Login')
       {
             sh "docker login -u vinaysagar15 -p Sagar=1997"
