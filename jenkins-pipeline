@@ -44,7 +44,13 @@ stage('Run Image')
        stage('Email Notification')
        {  
             echo 'BUILD SUCCESS'
-            emailext body: 'BUILD SUCCESSFULL', subject: 'BUILD STATUS', to: 'ksvinay043@gmail.com'
+            emailext attachLog: true, body:
+   """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
+   </b></p><p>View console output at "<a href="${env.BUILD_URL}"> 
+   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p> 
+     <p><i>(Build log is attached.)</i></p>""", 
+    compressLog: true, subject: "Status: ${currentBuild.result?:'SUCCESS'} - 
+    Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", to: 'ksvinay043@gmail.com'
        }
 }
 catch(e)
@@ -52,7 +58,13 @@ catch(e)
     stage('Email Notification')
     {
         echo 'BUILD FAILURE'
-        emailext body: 'BUILD SUCCESSFULL', subject: 'BUILD STATUS', to: 'ksvinay043@gmail.com' 
+        emailext attachLog: true, body:
+   """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
+   </b></p><p>View console output at "<a href="${env.BUILD_URL}"> 
+   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p> 
+     <p><i>(Build log is attached.)</i></p>""", 
+    compressLog: true, subject: "Status: ${currentBuild.result?:'FAILURE'} - 
+    Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", to: 'ksvinay043@gmail.com' 
     }
  }
 }
