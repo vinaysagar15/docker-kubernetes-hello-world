@@ -1,6 +1,7 @@
 
 node(label:'slave1') {
 try
+notifyStarted()
 {
     stage('clone')
     {
@@ -20,6 +21,7 @@ stage('Building image')
       {
             sh "docker build -t hello-world:hello ."
       }
+emailext body: 'Your Jar File is ready,Need approval for Building image!  ', subject: 'Building image approval', to: 'ksvinay043@gmail.com'
 input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Docker Login')
       {
@@ -34,6 +36,7 @@ stage('Docker Image Pull')
       {
             sh "docker pull vinaysagar15/helloworld:15"
       }
+      emailext body: 'Your image is ready,need approval for deploying!  ', subject: 'Running image approval', to: 'ksvinay043@gmail.com'
       input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Run Image') 
        {
@@ -42,17 +45,7 @@ stage('Run Image')
        stage('Email Notification')
        {  
             echo 'BUILD SUCCESS'
-       
-        emailext attachLog: true, body:
-   """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
-   </b></p><p>View console output at "<a href="${env.BUILD_URL}"> 
-   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p> 
-     <p><i>(Build log is attached.)</i></p>""", 
-    compressLog: true, 
-     [$class: 'RequesterRecipientProvider'], 
-    subject: "Status: ${currentBuild.result?:'SUCCESS'} - 
-    Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
-    to: 'ksvinay043@gmail.com'
+            emailext body: 'BUILD SUCCESSFULL', subject: 'BUILD STATUS', to: 'ksvinay043@gmail.com'
        }
 }
 catch(e)
@@ -60,17 +53,7 @@ catch(e)
     stage('Email Notification')
     {
         echo 'BUILD FAILURE'
-        echo 'BUILD FAILURE'
-        emailext attachLog: true, body:
-   """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
-   </b></p><p>View console output at "<a href="${env.BUILD_URL}"> 
-   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"</p> 
-     <p><i>(Build log is attached.)</i></p>""", 
-    compressLog: true, 
-     [$class: 'RequesterRecipientProvider'], 
-    subject: "Status: ${currentBuild.result?:'SUCCESS'} - 
-    Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
-    to: 'ksvinay043@gmail.com'
+        emailext body: 'BUILD SUCCESSFULL', subject: 'BUILD STATUS', to: 'ksvinay043@gmail.com' 
     }
  }
 }
