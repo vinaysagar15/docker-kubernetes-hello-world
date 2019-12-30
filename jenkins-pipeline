@@ -20,7 +20,7 @@ stage('Building image')
       {
             sh "docker build -t hello-world:hello ."
       }
-emailext body: "Building image approval     Job ${env.JOB_NAME}     build ${env.BUILD_NUMBER}\n More info at: ${env.JOB_URL}", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
+emailext body: "Building image approval     Job ${env.JOB_NAME}     build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
 input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Docker Login')
       {
@@ -35,7 +35,7 @@ stage('Docker Image Pull')
       {
             sh "docker pull vinaysagar15/helloworld:15"
       }
- emailext body: "Deploying image approval    Job ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.JOB_URL}", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
+ emailext body: "Deploying image approval    Job ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
       input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Run Image') 
        {
