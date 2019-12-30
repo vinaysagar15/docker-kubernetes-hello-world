@@ -20,7 +20,7 @@ stage('Building image')
       {
             sh "docker build -t hello-world:hello ."
       }
-emailext body: "Building image approval     Job ${env.JOB_NAME}     build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
+emailext body: "Building image approval     Job ${env.JOB_NAME}     build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}/console", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
 input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Docker Login')
       {
