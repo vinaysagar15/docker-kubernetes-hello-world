@@ -1,5 +1,5 @@
 
-node(label:'slave1') {
+node(label:'slave-01') {
 try
 {
     stage('clone')
