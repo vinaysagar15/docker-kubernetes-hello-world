@@ -18,15 +18,13 @@ stage('build')
    }
    
 emailext body: "Building image approval     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process  ${env.BUILD_URL}console", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'vinaysagar1ga15cs176@gmail.com'
-input message: 'Ready to Approve or not?', ok: 'Approve'
+def USER_INPUT = input message: 'Ready to Approve or not?', ok: 'Approve'
 
-
-stage('CheckLog') {
-      
-        if (manager.logContains('.*Approved.*')) {
-          error("Build failed because of this and that..")    
-        }
-      }
+if( "${USER_INPUT}" == "Approve"){
+                echo "It is Approved"
+            } else {
+                echo "It is Aborted"
+            }
  
 
 
