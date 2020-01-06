@@ -17,7 +17,10 @@ stage('build')
       archiveArtifacts 'target/*.jar'
    }
    
-emailext body: "Building image approval     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process  ${env.BUILD_URL}console", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'sharan9434@gmail.com'
+emailext body: "Building image approval     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process  ${env.BUILD_URL}console", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'vinaysagar1ga15cs176@gmail.com'
+input message: 'Ready to Approve or not?', ok: 'Approve'
+
+emailext body: "Building image approval     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process  ${env.BUILD_URL}console", subject: "Jenkin stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
 input message: 'Ready to Approve or not?', ok: 'Approve'
 
 stage('Building image') 
@@ -38,7 +41,7 @@ stage('Docker Image Pull')
       {
             sh "docker pull vinaysagar15/helloworld:15"
       }
- emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'sharan9434@gmail.com'     
+ emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
       input message: 'Ready to Approve or not?', ok: 'Approve'
 stage('Run Image') 
        {
@@ -48,7 +51,7 @@ stage('Run Image')
        {  
             echo 'BUILD SUCCESS'
             
-            emailext body: "BUILD SUCCESS     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'sharan9434@gmail.com'
+            emailext body: "BUILD SUCCESS     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
        }
 }
 catch(e)
@@ -57,7 +60,7 @@ catch(e)
     {
         echo 'BUILD FAILURE'
             
-            emailext body: "BUILD FAILURE     Job: ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'sharan9434@gmail.com'
+            emailext body: "BUILD FAILURE     Job: ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
     }
  }
 }
