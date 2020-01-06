@@ -22,7 +22,7 @@ def reg = input message: 'Ready to Approve or not?', ok: 'Approve'
 
 
 stage('CheckLog') {
-      steps {
+      
         if (manager.logContains('.*Approved.*')) {
           error("Build failed because of this and that..")    
         }
