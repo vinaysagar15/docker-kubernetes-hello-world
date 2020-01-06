@@ -21,7 +21,7 @@ emailext body: "Building image approval     Job: ${env.JOB_NAME}     Build: ${en
 def USER_INPUT = input message: 'Ready to Approve or not?', ok: 'Approve'
 
 if(currentBuild.result = 'Approved'){
-echo " stage is Approved "
+echo "stage is Approved"
 }
 
 
