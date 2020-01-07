@@ -21,7 +21,7 @@ stage('build')
       input message: 'Ready to Approve or not?', ok: 'Approve'
      emailext body: "Stage has been approved     Job: ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
       }
-      catch(e1){
+     catch(e1){
             emailext body: "The stage has been ABORTED        Job: ${env.JOB_NAME}       Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com' 
              }
              
