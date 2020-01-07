@@ -26,7 +26,16 @@ try {
     userInput = false
     echo "Aborted by: [${user}]"
 }
-
+node(label:'slave-01') {
+    if (userInput == Approve) {
+        // do something
+        echo "approved"
+    } else {
+        // do something else
+        echo "this was aborted"
+        
+    } 
+}
 
 
 stage('Building image') 
