@@ -14,11 +14,7 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-    try {
-        return action.call();
-    } catch (final exception) {
-
-        
+      
       emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
       
     
@@ -26,11 +22,11 @@ stage('build')
  def userChoice
         timeout(time: 30, unit: 'MINUTES') {
              userChoice = input(
-                message: 'Something went wrong, what do you want to do next?',
+                message: ' what do you want to do next?',
                 parameters: [
                     choice(
                         name: 'Next Action',
-                        choices: [ 'Continue', 'Abort'].join('\n'),
+                        choices: [ 'Approve', 'Abort'].join('\n'),
                         description: 'Whats your next action?'
                     )
                 ]
@@ -38,13 +34,13 @@ stage('build')
         }
 switch (userChoice) {
            
-            case 'Continue':
+            case 'Approve':
                 emailext body: "User has approved     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
              
             case 'Abort':
 emailext body: "user has aborted     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'                
         }
-       }
+       
 
 
 
