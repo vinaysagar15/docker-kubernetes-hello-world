@@ -17,7 +17,7 @@ stage('build')
       stage('approval') {
       emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
      
-             def env.RELEASE_SCOPE = input(
+              env.RELEASE_SCOPE = input(
                 message: ' what do you want to do next?',ok: 'Approve',
                 parameters: [
                     choice(
