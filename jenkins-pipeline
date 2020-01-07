@@ -16,8 +16,36 @@ stage('build')
    }
 
       emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
-      input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
+      
     
+
+ def userChoice
+        timeout(time: 30, unit: 'MINUTES') {
+             userChoice = input(
+                message: 'Something went wrong, what do you want to do next?',
+                parameters: [
+                    choice(
+                        name: 'Next Action',
+                        choices: ['Retry', 'Continue', 'Abort'].join('\n'),
+                        description: 'Whats your next action?'
+                    )
+                ]
+            )
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
              
 stage('Building image') 
@@ -40,7 +68,7 @@ stage('Docker Image Pull')
       }
     
  emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
-      input message: 'Ready to Approve or not?', ok: 'Approve'
+ input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
 
 stage('Run Image') 
        {
