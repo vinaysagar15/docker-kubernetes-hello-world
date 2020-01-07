@@ -39,10 +39,10 @@ stage('build')
 switch (userChoice) {
            
             case 'Continue':
-                warningMessage 'User has opted to continue.'
+                echo 'User has opted to continue.'
                 return null;
             default:
-                errorMessage 'User has opted to abort the action'
+                echo 'User has opted to abort the action'
                 throw exception;
         }
        }
