@@ -40,8 +40,8 @@ switch (userChoice) {
            
             case 'Continue':
                 echo 'User has opted to continue.'
-                return null;
-            default:
+             
+            case 'Abort':
                 echo 'User has opted to abort the action'
                 throw exception;
         }
