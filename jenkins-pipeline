@@ -14,11 +14,9 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-      
+      stage('approval') {
       emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
-      
-    
-
+     
              def result = input(
                 message: ' what do you want to do next?',
                 parameters: [
@@ -31,6 +29,7 @@ stage('build')
             )
         
 echo 'result: ' + result
+}
                
 stage('Building image') 
       {
