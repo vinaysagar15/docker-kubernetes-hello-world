@@ -15,7 +15,7 @@ stage('build')
       archiveArtifacts 'target/*.jar'
    }
 
-      
+      try {
       input message: 'Ready to Approve or not?', ok: 'Approve'
      emailext body: "Stage has been approved     Job: ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
      
@@ -41,7 +41,6 @@ stage('Docker Image Pull')
       try{
  emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
       input message: 'Ready to Approve or not?', ok: 'Approve'
- emailext body: "stage has been approved     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
 }
 catch(e1){
  emailext body: "stage has been aborted     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
