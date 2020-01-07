@@ -1,7 +1,5 @@
 
 node(label:'slave-01') {
-try
-{
     stage('clone')
     {
         git 'https://github.com/vinaysagar15/docker-kubernetes-hello-world.git'
@@ -27,7 +25,7 @@ stage('build')
      catch(e1){
             emailext body: "The stage has been ABORTED        Job: ${env.JOB_NAME}       Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com' 
              }
-             }
+             
              
 stage('Building image') 
       {
@@ -60,17 +58,6 @@ stage('Run Image')
             emailext body: "BUILD SUCCESS     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
        }
 }
-catch(e)
-{
-    stage('Email Notification')
-    {
-        echo 'BUILD FAILURE'
-            
-            emailext body: "BUILD FAILURE     Job: ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
-    }
- }
-}
-
 
 
 
