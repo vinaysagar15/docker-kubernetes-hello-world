@@ -39,11 +39,10 @@ stage('build')
 switch (userChoice) {
            
             case 'Continue':
-                echo 'User has opted to continue.'
+                emailext body: "User has approved     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
              
             case 'Abort':
-                echo 'User has opted to abort the action'
-                throw exception;
+emailext body: "user has aborted     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'                throw exception;
         }
        }
 
