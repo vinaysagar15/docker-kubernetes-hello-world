@@ -21,7 +21,17 @@ emailext body: "Building image approval     Job: ${env.JOB_NAME}     Build: ${en
 input message: 'Ready to Approve or not?', ok: 'Approve'
 
 
+matcher = manager.getLogMatcher('^build msg: (.*)$')
 
+if (matcher.matches()) {
+    buildMsg=matcher.group(1)
+
+    manager.build.addAction(
+        new ParametersAction([
+            new StringParameterValue("BUILD_MSG", "${buildMsg}")
+        ])
+    )
+}
 
 
 
