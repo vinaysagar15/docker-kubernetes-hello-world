@@ -24,7 +24,7 @@ stage('build')
                 parameters: [
                     choice(
                         name: 'Next Action',
-                        choices: [ 'Approve', 'Abort'].join('\n'),
+                        choices: [ 'Approve','Abort'].join('\n'),
                         description: 'Whats your next action?'
                     )
                 ]
