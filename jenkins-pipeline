@@ -35,6 +35,7 @@ stage('build')
 switch (userChoice) {
            
             case 'Approve':
+            echo '${userChoice}'
                 emailext body: "User has approved     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
              
             case 'Abort':
