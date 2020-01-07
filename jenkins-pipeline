@@ -18,7 +18,7 @@ stage('build')
       
       currentBuild.result = input message: 'Ready to Approve or not?', ok: 'Approve'
      emailext body: "Stage has been approved     Job: ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
-      echo '${currentBuild.result}' 
+      echo "${currentBuild.result}" 
              
 stage('Building image') 
       {
