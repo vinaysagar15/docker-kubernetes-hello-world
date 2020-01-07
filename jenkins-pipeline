@@ -18,7 +18,7 @@ stage('build')
       deg abc
       abc = input message: 'Ready to Approve or not?', ok: 'Approve'
      emailext body: "Stage has been approved     Job: ${env.JOB_NAME}     Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
-      currentBuild.result = ' ${abc}  
+      currentBuild.result = ' ${abc} ' 
              
 stage('Building image') 
       {
