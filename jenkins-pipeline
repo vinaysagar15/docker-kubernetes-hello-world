@@ -19,9 +19,7 @@ stage('build')
       
     
 
- def userChoice =
-        timeout(time: 30, unit: 'MINUTES') {
-             userChoice = input(
+             def result = input(
                 message: ' what do you want to do next?',
                 parameters: [
                     choice(
@@ -31,32 +29,9 @@ stage('build')
                     )
                 ]
             )
-        }
-switch (userChoice) {
-           
-            case 'Approve':
-            echo '${userChoice}'
-                emailext body: "User has approved     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
-             
-            case 'Abort':
-emailext body: "user has aborted     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'                
-        }
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-             
+        
+echo 'result: ' + result
+               
 stage('Building image') 
       {
             sh "docker build -t hello-world:hello ."
