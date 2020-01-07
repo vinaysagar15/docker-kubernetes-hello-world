@@ -25,7 +25,7 @@ stage('build')
      catch(e1){
             emailext body: "The stage has been ABORTED        Job: ${env.JOB_NAME}       Build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Jenkins Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com' 
              }
-             
+      }       
              
 stage('Building image') 
       {
