@@ -16,28 +16,13 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-   
-
-def userInput
-try {
-    userInput = input message: 'Ready to Approve or not?', ok: 'Approve'
-} catch(err) { // input false
-    def user = err.getCauses()[0].getUser()
-    userInput = false
-    echo "Aborted by: [${user}]"
-}
-node(label:'slave-01') {
-    if (userInput == Approve) {
-        // do something
-        echo "approved"
-    } else {
-        // do something else
-        echo "this was aborted"
-        
-    } 
-}
-
-
+   try {
+   emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
+      input message: 'Ready to Approve or not?', ok: 'Approve'
+      }
+      catch(e1){
+      emailext body: "    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}   Has been ABORTED, subject: " ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
+   }
 stage('Building image') 
       {
             sh "docker build -t hello-world:hello ."
