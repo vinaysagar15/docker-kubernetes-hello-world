@@ -41,7 +41,7 @@ catch (e) {
   if (e.getCauses().any { it instanceof org.jenkinsci.plugins.workflow.support.steps.input.Rejection }) {
   echo "Aborted"
   emailext body: "The stage has been Aborted    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}", subject: " Approval Notification ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
-  break;
+  StepExecution.stop
 }
 }
 }
