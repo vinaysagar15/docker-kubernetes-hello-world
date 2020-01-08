@@ -25,7 +25,7 @@ stage('build')
                     )
                 ]
             )
-        }
+        
      echo 'Result: ${result}'
      
     
