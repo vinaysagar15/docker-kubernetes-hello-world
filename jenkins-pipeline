@@ -27,7 +27,7 @@ try{
             )
         }
      echo 'Result: ${result}'
-     }
+     
     
 stage('Building image') 
       {
