@@ -14,10 +14,7 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-   stage ('set_env') {
-                // script to set environment.
-                didSucceed = true // Here you indicate whether stuff actually worked..
-            }
+
       stage('approval') {
    def userInput
 try {
