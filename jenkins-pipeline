@@ -14,9 +14,13 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-
-    input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
- findText regexp: '<ABORTED>', alsoCheckConsoleOutput: true            
+try{
+   def result =  input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
+     echo 'Result: ${result}'
+     }
+     catch(err){
+     echo "Result: ${result}'
+     }
 stage('Building image') 
       {
             sh "docker build -t hello-world:hello ."
