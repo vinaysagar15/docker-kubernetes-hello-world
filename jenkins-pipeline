@@ -1,5 +1,6 @@
 
 node(label:'slave-01') {
+try{
     stage('clone')
     {
         git 'https://github.com/vinaysagar15/docker-kubernetes-hello-world.git'
@@ -14,8 +15,11 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-      stage('approval') 
+       
+         
+     stage('approval') 
       {
+          try {
       emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
      
              def result = input(
@@ -23,14 +27,24 @@ stage('build')
                 parameters: [
                     choice(
                         name: 'Next Action',
-                        choices: [ 'Approve','Abort'].join('\n'),
+                        choices: [ 'Hold','Approve','Abort'].join('\n'),
                         description: 'Whats your next action?'
                     )
                 ]
             )
         
-echo 'Result: ' + result
+echo "Result: ${result}d"
+  emailext body: "The stage has been Approved successfully    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}", subject: " Approval Notification ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
+
 }
+catch (e) {
+  if (e.getCauses().any { it instanceof org.jenkinsci.plugins.workflow.support.steps.input.Rejection }) {
+  echo "Aborted"
+  emailext body: "The stage has been Aborted    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}", subject: " Approval Notification ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
+}
+}
+}
+
     
 stage('Building image') 
       {
@@ -64,6 +78,7 @@ stage('Run Image')
             
             emailext body: "BUILD SUCCESS     Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: "Build Job ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'
        }
+}
 }
 
 
