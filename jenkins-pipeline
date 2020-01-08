@@ -15,7 +15,7 @@ stage('build')
       archiveArtifacts 'target/*.jar'
    }
 
-      stage('approval') {
+    
    def userInput
 try {
     userInput = input(
@@ -27,7 +27,7 @@ try {
     userInput = false
     echo "Aborted by: [${user}]"
 }
-}
+
                
 stage('Building image') 
       {
