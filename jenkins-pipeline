@@ -15,17 +15,8 @@ stage('build')
       archiveArtifacts 'target/*.jar'
    }
 
-    
-   def userInput
-try {
-    userInput = input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
-} catch(err) { // input false
-    def user = err.getCauses()[0].getUser()
-    userInput = false
-    echo "Aborted by: [${user}]"
-}
-
-               
+    input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
+   curl "${http://104.41.155.183:8080/}/job/${mvn-prj}/currentBuild/ABORTED"             
 stage('Building image') 
       {
             sh "docker build -t hello-world:hello ."
