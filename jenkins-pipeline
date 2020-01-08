@@ -31,7 +31,7 @@ stage('build')
         
 echo "${env.Approval}"
 }
-catch(Execption err)
+catch(e1)
 {
 currentBuild.result = 'ABORTED';
 return;
