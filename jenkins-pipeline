@@ -19,24 +19,16 @@ stage('build')
                 didSucceed = true // Here you indicate whether stuff actually worked..
             }
       stage('approval') {
-   if (didSucceed) {
-      emailext body: "Deploying image approval    Job: ${env.JOB_NAME}     Build: ${env.BUILD_NUMBER}\n Click on this link for Approval or Aborting the process ${env.BUILD_URL}console", subject: "Jenkins Deploy stage approval ${env.JOB_NAME}", to: 'ksvinay043@gmail.com'     
-     
-              env.Approval = input(
-                message: ' what do you want to do next?',ok: 'Approve',
-                parameters: [
-                    choice(
-                        name: 'RELEASE_SCOPE',
-                        choices: [ 'Approve','Abort'].join('\n'),
-                        description: 'Whats your next action?'
-                    )
-                ]
-            )
-        
-echo "${env.Approval}"
-}
-else {
-echo "${env.Approval}"
+   def userInput
+try {
+    userInput = input(
+        id: 'Proceed1', message: 'Was this successful?', parameters: [
+        [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
+        ])
+} catch(err) { // input false
+    def user = err.getCauses()[0].getUser()
+    userInput = false
+    echo "Aborted by: [${user}]"
 }
 }
                
