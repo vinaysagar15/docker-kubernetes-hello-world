@@ -15,12 +15,20 @@ stage('build')
       archiveArtifacts 'target/*.jar'
    }
 try{
-   def result =  input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
+   def result =  input(
+                message: 'Something went wrong, what do you want to do next?',
+                parameters: [
+                    choice(
+                        name: 'Next Action',
+                        choices: ['Continue', 'Abort'].join('\n'),
+                        description: 'Whats your next action?'
+                    )
+                ]
+            )
+        }
      echo 'Result: ${result}'
      }
-     catch(err){
-     echo "Result: ${result}'
-     }
+    
 stage('Building image') 
       {
             sh "docker build -t hello-world:hello ."
