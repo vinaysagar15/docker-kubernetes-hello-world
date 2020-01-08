@@ -14,7 +14,7 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-try{
+
    def result =  input(
                 message: 'Something went wrong, what do you want to do next?',
                 parameters: [
