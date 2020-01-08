@@ -14,8 +14,9 @@ stage('build')
       junit '**/target/surefire-reports/TEST-*.xml'
       archiveArtifacts 'target/*.jar'
    }
-
-   def result =  input(
+ stage('Approval') 
+     {
+   def env.result =  input(
                 message: 'Something went wrong, what do you want to do next?',
                 parameters: [
                     choice(
@@ -26,8 +27,8 @@ stage('build')
                 ]
             )
         
-     echo 'Result: ${result}'
-     
+     echo ' ${env.result}'
+     }
     
 stage('Building image') 
       {
