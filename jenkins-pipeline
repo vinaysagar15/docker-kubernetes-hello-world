@@ -27,7 +27,7 @@ stage('build')
                 ]
             )
         
-     echo '${env.reg}'
+     echo '${reg}'
      }
     
 stage('Building image') 
