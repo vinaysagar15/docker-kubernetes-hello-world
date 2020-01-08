@@ -1,4 +1,4 @@
-def didSucceed = true
+
 node(label:'slave-01') {
     stage('clone')
     {
@@ -16,7 +16,7 @@ stage('build')
    }
 
     input message: 'Do you want to continue with the next stage?', parameters: [choice(choices: ['approve', 'abort'], description: '', name: 'aprroval')]
-   curl "${http://104.41.155.183:8080/}/job/${mvn-prj}/currentBuild/ABORTED"             
+ findText regexp: '<ABORTED>', alsoCheckConsoleOutput: true            
 stage('Building image') 
       {
             sh "docker build -t hello-world:hello ."
