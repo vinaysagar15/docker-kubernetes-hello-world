@@ -1,0 +1,22 @@
+ # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: helloworld
+spec:
+ selector:
+   matchLabels:
+     app: helloworld
+ replicas: 2
+ template:
+   metadata:
+     labels:
+       app: helloworld
+   spec:
+     containers:
+     - name: helloworld-container
+       image: vinayacr01.azurecr.io/helloworld:v1
+       ports:
+       - containerPort: 8080
+     imagePullSecrets:
+       - name: secretworld
